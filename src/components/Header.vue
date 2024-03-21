@@ -1,5 +1,38 @@
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      menuList: [
+        {
+          link: "#",
+          title: "Donna",
+        },
+        {
+          link: "#",
+          title: "Uomo",
+        },
+        {
+          link: "#",
+          title: "Bambini",
+        },
+      ],
+      iconList: [
+        {
+          style: "fa-regular",
+          type: "fa-user",
+        },
+        {
+          style: "fa-regular",
+          type: "fa-heart",
+        },
+        {
+          style: "fa-solid",
+          type: "fa-bag-shopping",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <template>
@@ -7,16 +40,18 @@ export default {};
     <div class="container">
       <nav>
         <ul class="menu">
-          <li><a href="#">Donna</a></li>
-          <li><a href="#">Uomo</a></li>
-          <li><a href="#">Bambini</a></li>
+          <li v-for="(item, id) in menuList" :key="id">
+            <a :href="item.link">{{ item.title }}</a>
+          </li>
         </ul>
       </nav>
       <img src="../assets/img/boolean-logo.png" alt="Logo boolean" />
       <div>
-        <i class="fa-regular fa-user"></i>
-        <i class="fa-regular fa-heart"></i>
-        <i class="fa-solid fa-bag-shopping"></i>
+        <i
+          v-for="(icon, id) in iconList"
+          :key="id"
+          :class="[icon.style, icon.type]"
+        ></i>
       </div>
     </div>
   </header>
