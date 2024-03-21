@@ -30,9 +30,9 @@ header {
   color: $color-white;
   font-size: $font-m;
   height: 50px;
-  // width: 100%;
-  // position: fixed;
-  // z-index: 100;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
   box-shadow: 0 3px 5px rgba($color-black, 0.4);
 
   .container {
@@ -47,6 +47,10 @@ header {
 
       li {
         padding-right: 10px;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 
