@@ -1,6 +1,12 @@
 <script>
 import ProductCard from "./partials/ProductCard.vue";
-import products from "../assets/data/db";
+import products from "../assets/data/db.js";
+
+// COSA CAMBIA USANDO DB in JSON:
+//Partendo da db2 in json, istruzione di import diventa:
+// import products from "../assets/data/db2.json";
+//E in v-for il ciclo è in products.products
+//Il resto funziona uguale
 
 export default {
   components: {
