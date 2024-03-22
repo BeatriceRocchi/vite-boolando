@@ -51,6 +51,7 @@ footer {
       li {
         margin-right: 10px;
         font-size: $font-xs;
+
         &:hover {
           text-decoration: underline;
         }

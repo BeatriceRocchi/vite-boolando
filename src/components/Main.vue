@@ -1,18 +1,34 @@
 <script>
-export default {};
+import ProductCard from "./partials/ProductCard.vue";
+
+export default {
+  components: {
+    ProductCard,
+  },
+};
 </script>
 
 <template>
-  <main>Main</main>
+  <main>
+    <div class="container">
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+    </div>
+  </main>
 </template>
 
 <style lang="scss" scoped>
 main {
-  padding-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 900px;
-  // TODO: eliminare altezza fissa dopo aver inserito il contenuto
+  padding-top: 80px;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 </style>
