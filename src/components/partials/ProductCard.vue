@@ -32,7 +32,9 @@ export default {
         :src="`/src/assets/img/${productObject.backImage}`"
         :alt="productObject.brand"
       />
-      <div class="wish">&hearts;</div>
+      <div class="wish" :class="{ 'in-wishlist': productObject.isInFavorites }">
+        &hearts;
+      </div>
       <div class="badges-box">
         <span
           v-for="(badge, index) in productObject.badges"
@@ -60,6 +62,10 @@ export default {
 
 <style lang="scss" scoped>
 @use "../../assets/scss/partials/variables" as *;
+
+.in-wishlist {
+  color: $color-discount;
+}
 
 .card {
   width: 32%;
