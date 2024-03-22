@@ -1,28 +1,58 @@
 <script>
-export default {};
+export default {
+  props: {
+    productObject: Object,
+  },
+  methods: {
+    calcSalesPrice() {
+      let salesPrice;
+      this.productObject.badges.forEach((badge) => {
+        if (badge.type === "discount") {
+          salesPrice =
+            this.productObject.price -
+            this.productObject.price * Math.abs(parseFloat(badge.value) / 100);
+        }
+      });
+      return salesPrice ? salesPrice.toFixed(2) : null;
+    },
+  },
+};
 </script>
 
 <template>
   <div class="card">
     <div class="top-card">
-      <img class="default-img" src="../../assets/img/1.webp" alt="Levi's" />
+      <img
+        class="default-img"
+        :src="`/src/assets/img/${productObject.frontImage}`"
+        :alt="productObject.brand"
+      />
       <img
         class="hover-img"
-        src="../../assets/img/1b.webp"
-        alt="T-shirt Levi's"
+        :src="`/src/assets/img/${productObject.backImage}`"
+        :alt="productObject.brand"
       />
       <div class="wish">&hearts;</div>
-      <div class="tag">
-        <span class="discount">-50%</span>
-        <span class="sustainability">Sostenibilità</span>
+      <div class="badges-box">
+        <span
+          v-for="(badge, index) in productObject.badges"
+          :key="index"
+          :class="badge.type"
+        >
+          {{ badge.value }}</span
+        >
       </div>
     </div>
     <div class="bottom-card">
-      <div class="brand">Levi's</div>
-      <div class="product">relaxed fit tee unisex</div>
+      <div class="brand">{{ productObject.brand }}</div>
+      <div class="product">{{ productObject.name }}</div>
       <div>
-        <span class="discounted-price">14,99 &euro;</span
-        ><span class="full-price"> 29,99 &euro;</span>
+        <span v-if="calcSalesPrice()" class="discounted-price"
+          >{{ calcSalesPrice() }} &euro;
+        </span>
+        <span class="full-price" :class="{ strike: calcSalesPrice() }">
+          {{ productObject.price }} &euro;</span
+        >
       </div>
     </div>
   </div>
@@ -63,7 +93,7 @@ export default {};
       }
     }
 
-    .tag {
+    .badges-box {
       position: absolute;
       bottom: 8%;
       font-size: $font-s;
@@ -71,7 +101,7 @@ export default {};
       color: $color-white;
 
       .discount,
-      .sustainability {
+      .tag {
         padding: 5px 12px;
       }
 
@@ -79,7 +109,7 @@ export default {};
         background-color: $color-discount;
       }
 
-      .sustainability {
+      .tag {
         background-color: $color-value;
       }
     }
@@ -98,7 +128,7 @@ export default {};
       color: $color-discount;
     }
 
-    .full-price {
+    .strike {
       text-decoration: line-through;
     }
   }
