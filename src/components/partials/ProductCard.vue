@@ -4,6 +4,9 @@ export default {
     productObject: Object,
   },
   methods: {
+    getImagePath(imageName) {
+      return new URL(`../../assets/img/${imageName}`, import.meta.url).href;
+    },
     calcSalesPrice() {
       let salesPrice;
       this.productObject.badges.forEach((badge) => {
@@ -24,12 +27,12 @@ export default {
     <div class="top-card">
       <img
         class="default-img"
-        :src="`/src/assets/img/${productObject.frontImage}`"
+        :src="getImagePath(productObject.frontImage)"
         :alt="productObject.brand"
       />
       <img
         class="hover-img"
-        :src="`/src/assets/img/${productObject.backImage}`"
+        :src="getImagePath(productObject.backImage)"
         :alt="productObject.brand"
       />
       <div class="wish" :class="{ 'in-wishlist': productObject.isInFavorites }">
